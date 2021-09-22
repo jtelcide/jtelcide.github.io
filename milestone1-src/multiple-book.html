@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/milestone1-src/css/bootstrap.css">
+  <link rel="stylesheet" href="/milestone1-src/css/style.css">
+  <script src="/milestone1-src/js/jquery.js"></script>
+  <title>Milestone 1 | James Telcide</title>
+</head>
+<body class="bg-color">
+  <div class="bg-content">
+    <h1>Milestone 1: JSON</h1>
+    <h2>Multiple Book Search</h2>
+  </div>
+
+  <div class="blurb2">
+    <div class="blurb-content2">
+      <h4><a href="index.html">Back To Home Page</a></h4>
+      <h3 id="stuffs0"></h3>
+      <br>
+      <h3 id="stuffs1"></h3>
+      <br>
+      <h3 id="stuffs2"></h3>
+      <br>
+      <h3 id="stuffs3"></h3>
+      <br>
+      <h3 id="stuffs4"></h3>
+      <br>
+      <h3 id="stuffs5"></h3>
+      <br>
+      <h3 id="stuffs6"></h3>
+      <br>
+      <h3 id="stuffs7"></h3>
+      <br>
+      <h3 id="stuffs8"></h3>
+      <br>
+      <h3 id="stuffs9"></h3>
+      <br>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <h3>James Telcide &copy; 2021</h3>
+  </footer>
+
+  <script>
+  $(document).ready(function(){
+            var num = 0;  
+            $.getJSON('/milestone1-src/js/books-search.json', function(data) {
+              while(num < 10){
+                $('<img />', {src: data.items[num].volumeInfo.imageLinks.thumbnail}).appendTo($('#stuffs' + num).empty());       
+               $('#stuffs' + num).append('<p><b>Title: </b>'+ data.items[num].volumeInfo.title + '<p>');
+               $('#stuffs' + num).append('<p><b>Sub-Title: </b>'+ data.items[num].volumeInfo.subtitle + '<p>');
+               $('#stuffs' + num).append('<p><b>Author: </b>'+ data.items[num].volumeInfo.authors + '<p>');
+               $('#stuffs' + num).append('<p><b>Publisher: </b>'+ data.items[num].volumeInfo.publisher + '<p>');
+               $('#stuffs' + num).append('<p><b>Date Published: </b>'+ data.items[num].volumeInfo.publishedDate + '<p>');
+               $('#stuffs' + num).append('<p><b>Description: </b>'+ data.items[num].volumeInfo.description + '<p>');
+               $('#stuffs' + num).append('<p><b>ISBN-13: </b>'+ data.items[num].volumeInfo.industryIdentifiers[1].identifier + '<p>');
+               $('#stuffs' + num).append('<p><b>Page Count: </b>'+ data.items[num].volumeInfo.pageCount + '<p>');
+               $('#stuffs' + num).append('<p><b>Average Rating: </b>'+ data.items[num].volumeInfo.averageRating + '<p>');
+                num += 1;
+              }
+              
+               });
+            });
+  </script>
+  
+</body>
+</html>

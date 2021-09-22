@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/milestone1-src/css/bootstrap.css">
+  <link rel="stylesheet" href="/milestone1-src/css/style.css">
+  <script src="/milestone1-src/js/jquery.js"></script>
+  <title>Milestone 1 | James Telcide</title>
+</head>
+<body class="bg-color">
+  <div class="bg-content">
+    <h1>Milestone 1: JSON</h1>
+    <h2>Single Book Search</h2>
+  </div>
+
+  <div class="blurb2">
+    <div class="blurb-content2">
+      <h4><a href="index.html">Back To Home Page</a></h4>
+      <h3 id="img"></h3>
+      <h3 id="title"><b>Title: </b></h3>
+      <h3 id="sub"><b>Sub-Title: </b></h3>
+      <h3 id ="auth"><b>Author: </b></h3>
+      <h3 id ="pub"><b>Publisher: </b></h3>
+      <h3 id ="datePublished"><b>Date Published: </b></h3>
+      <h3 id ="descr"><b>Description: </b></h3>
+      <h3 id="isbn"><b>ISBN-13: </b></h3>
+      <h3 id="pCount"><b>Page Count: </b></h3>
+      <h3 id="avgRating"><b>Average Rating: </b></h3>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <h3>James Telcide &copy; 2021</h3>
+  </footer>
+
+  <script>   
+         $(document).ready(function(){
+            $.getJSON('/milestone1-src/js/books-book.json', function(data) {
+               $('<img />', {src: data.volumeInfo.imageLinks.thumbnail}).appendTo($('#img').empty());       
+               $('#title').append('<p>'+ data.volumeInfo.title + '<p>');
+               $('#sub').append('<p>'+ data.volumeInfo.subtitle + '<p>');
+               $('#auth').append('<p>'+ data.volumeInfo.authors + '<p>');
+               $('#pub').append('<p>'+ data.volumeInfo.publisher + '<p>');
+               $('#datePublished').append('<p>'+ data.volumeInfo.publishedDate + '<p>');
+               $('#descr').append('<p>'+ data.volumeInfo.description + '<p>');
+               $('#isbn').append('<p>'+ data.volumeInfo.industryIdentifiers[1].identifier + '<p>');
+               $('#pCount').append('<p>'+ data.volumeInfo.pageCount + '<p>');
+               $('#avgRating').append('<p>'+ data.volumeInfo.averageRating + '<p>');
+               });
+            });
+  </script>
+  
+</body>
+</html>

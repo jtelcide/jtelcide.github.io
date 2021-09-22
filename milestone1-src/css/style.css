@@ -1,0 +1,45 @@
+.bg-color{
+  background-color: #1f4ada;
+}
+
+.bg-content {
+  padding-top: 20px;
+  color: white;
+  text-align: center;
+}
+
+.blurb {
+  background-color: white;
+  margin: auto;
+  margin-top: 5%;
+  width: 50%;
+  height: 350px;
+  border-radius: 25px;
+  
+}
+
+.blurb2 {
+  background-color: white;
+  margin: auto;
+  margin-top: 5%;
+  padding: 20px 20px 20px 20px;
+  width: 70%;
+  height: auto;
+  border-radius: 25px;
+}
+
+.blurb-content{
+  padding-top: 30px;
+  text-align: center;
+}
+
+.blurb-content2{
+  padding-top: 30px;
+  margin-left: 40px;
+}
+
+.foot{
+  color: white;
+  padding-top: 10%;
+  text-align: center;
+}

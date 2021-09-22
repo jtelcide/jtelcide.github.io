@@ -1,5 +1,5 @@
 body{
-  background: black;
+  background: #91b3e0;
   color: #fff;
   font-family: helvetica;
 }
@@ -14,7 +14,7 @@ ul{
 }
 
 #container{
-  background: #333;
+  background: #1167b1;
   width: 960px;
   margin: 30px auto;
   overflow: hidden;
@@ -23,7 +23,7 @@ ul{
 
 nav{
   height: 40px;
-  background: #666;
+  background: #2a9df4;
 }
 
 nav ul {
@@ -45,7 +45,7 @@ main{
 aside {
   float: right;
   width: 30%;
-  background: #666;
+  background: #2a9df4;
   margin-top: 20px;
   padding: 10px;
 }
@@ -57,7 +57,7 @@ aside {
 footer{
   text-align: center;
   padding: 10px;
-  background: #666;
+  background: #2a9df4;
   margin-top: 30px;
 }
 
