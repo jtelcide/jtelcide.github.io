@@ -37,7 +37,7 @@
 
   <script>   
          $(document).ready(function(){
-            $.getJSON('https://github.com/jtelcide/jtelcide.github.io/blob/main/milestone1-src/js/books-book.JSON', function(data) {
+            $.getJSON('https://github.com/jtelcide/jtelcide.github.io/blob/cfd93e67909fab9fb089f4d35f1ca0ee70a91229/milestone1-src/single-book.html', function(data) {
                $('<img />', {src: data.volumeInfo.imageLinks.thumbnail}).appendTo($('#img').empty());       
                $('#title').append('<p>'+ data.volumeInfo.title + '<p>');
                $('#sub').append('<p>'+ data.volumeInfo.subtitle + '<p>');
