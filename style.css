@@ -64,3 +64,7 @@ footer{
 .btn1{
   color: black;
 }
+
+button{
+  cursor: pointer;
+}
