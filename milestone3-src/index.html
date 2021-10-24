@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/milestone3-src/css/bootstrap.css">
+  <link rel="stylesheet" href="/milestone3-src/css/style.css">
+  <script src="/milestone3-src/js/jquery.js"></script>
+  <title>Milestone 3 | Main Page</title>
+</head>
+
+<body class="bg-color">
+  <div class="bg-content">
+    <h1>Milestone 3: Books Search AJAX</h1>
+    <h2>This application is a continuation of milestone 2, but in one page.</h2>
+  </div>
+
+  <div class="blurb-content2">
+    <div class="blurb2">
+      <h4><a href="/index.html">Back To Entry Milestone Page</a></h4><br><br>
+      <form id="search-form" autocomplete="off">
+        <label for="search-terms"><h3>Search By Key Terms</h3></label><br>
+        <input type="text" id="search-terms" name="search-terms">
+        <input type="submit" value="Search"><br>
+        <h4>Page: <input type="radio" name="page-choice" id="page1"> 1 </input><input type="radio" name="page-choice" id="page2"> 2 </input><input type="radio" name="page-choice" id="page3"> 3 </input><input type="radio" name="page-choice" id="page4"> 4 </input><input type="radio" name="page-choice"id="page5"> 5 </input></h4>
+      </form>
+      <br><br>
+
+      <div id="result"></div>
+
+    </div>
+  </div>
+
+  <div class="blurb-content2">
+    <div class="blurb2">
+      <h3 class="center-font">My Personal Shelf</h3><br><br>
+
+      <div id="shelf-list"></div>
+
+    </div>
+
+
+  </div>
+
+  <footer class="foot">
+    <h3>James Telcide &copy; 2021</h3>
+  </footer>
+
+  <script>
+    $(document).ready(function(){
+      $("#search-form").submit(function(){
+        $("#result").empty();
+        var pageChoice = 39;
+
+        if ($("#page1").prop("checked")) {
+          pageChoice = 0;
+        } else if($("#page2").prop("checked")) {
+          pageChoice = 9;
+        } else if($("#page3").prop("checked")) {
+          pageChoice = 19;
+        } else if($("#page4").prop("checked")) {
+          pageChoice = 29;
+        } else if($("#page5").prop("checked")) {
+          pageChoice = 39;
+        }
+
+        var search = $("#search-terms").val();
+
+        if(search == '') {
+          alert("ERROR: Please enter text in field.");
+        }
+        else {
+          var url = '';
+          var img = '';
+          var title = '';
+          var author = '';
+
+          $.get("https://www.googleapis.com/books/v1/volumes?q=" + search + "&startIndex=" + pageChoice, function(response){
+            for(i = 0; i < response.items.length; i++){
+              title = $('<h3> <a target="_blank" href=' + response.items[i].volumeInfo.infoLink + '><b>Title: </b>' + response.items[i].volumeInfo.title + '</a></h3>');
+              author = $('<h3> <b>Author(s): </b>' + response.items[i].volumeInfo.authors + '</h3>');
+              img = $('<img><br><a href=' + response.items[i].volumeInfo.infoLink + '><br></a><br><br>');
+              url = response.items[i].volumeInfo.imageLinks.thumbnail;
+              img.attr('src',url);
+
+              title.appendTo("#result");
+              author.appendTo("#result");
+              img.appendTo("#result");
+
+            }
+          });
+        }
+        return false;
+      });
+
+      var url = '';
+          var img = '';
+          var title = '';
+          var author = '';
+
+          $.get("https://www.googleapis.com/books/v1/users/104878676054903908101/bookshelves/1001/volumes", function(response){
+            for(i = 0; i < response.items.length; i++){
+              title = $('<h3> <a target="_blank" href=' + response.items[i].volumeInfo.infoLink + '><b>Title: </b>' + response.items[i].volumeInfo.title + '</a></h3>');
+              author = $('<h3> <b>Author(s): </b>' + response.items[i].volumeInfo.authors + '</h3>');
+              img = $('<img><br><a href=' + response.items[i].volumeInfo.infoLink + '><br></a><br><br>');
+              url = response.items[i].volumeInfo.imageLinks.thumbnail;
+              img.attr('src',url);
+
+              title.appendTo("#shelf-list");
+              author.appendTo("#shelf-list");
+              img.appendTo("#shelf-list");
+            }
+          });
+
+    });
+
+  </script>
+  
+</body>
+</html>
