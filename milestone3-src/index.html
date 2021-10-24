@@ -51,7 +51,7 @@
     $(document).ready(function(){
       $("#search-form").submit(function(){
         $("#result").empty();
-        var pageChoice = 39;
+        var pageChoice = "";
 
         if ($("#page1").prop("checked")) {
           pageChoice = 0;
@@ -63,6 +63,8 @@
           pageChoice = 29;
         } else if($("#page5").prop("checked")) {
           pageChoice = 39;
+        } else {
+          alert("ERROR: Please select page number.");
         }
 
         var search = $("#search-terms").val();
