@@ -140,7 +140,7 @@
                 img: response.items[i].volumeInfo.imageLinks.thumbnail,
             };
 
-            $('body').append( Mustache.render(resultTemplate,resultData) );
+            $('result').append( Mustache.render(resultTemplate,resultData) );
 
         }
       });
