@@ -128,6 +128,25 @@
         return false;
       });
 
+      /*
+
+      $.get("https://www.googleapis.com/books/v1/volumes?q=" + search + "&startIndex=" + pageChoice, function(response){
+        for(i = 0; i < response.items.length; i++){
+            var resultTemplate = '<h3><b>Title: </b>{{title}}</a></h3><h3> <b>Author(s): </b>{{author}}</h3><img><br><a href={{img}}><br></a>';
+    
+            var resultData = {
+                title: response.items[i].volumeInfo.title,
+                author: response.items[i].volumeInfo.authors,
+                img: response.items[i].volumeInfo.imageLinks.thumbnail,
+            };
+
+            $('body').append( Mustache.render(resultTemplate,resultData) );
+
+        }
+      });
+
+      */
+
       var url = '';
           var img = '';
           var title = '';
