@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/jquery.js"></script>
+  
+  <title>Term Project | Main Page</title>
+</head>
+
+<body class="bg-color">
+
+  <!--- This is the title of the project and a short description in the h2 --->
+  <div class="bg-content">
+    <h1>Movie SPA Project</h1>
+    <h2>Access the Movie Database API through this application.</h2>
+  </div>
+
+  <!--- This div holds all the three squares --->
+  <div class="blurb-content2">
+
+    <!--- This is the first square-ish buble that will show searched movies and shows --->
+    <div class="blurb2">
+
+      <!--- This is the form i used to get the user input to work in javascript --->
+      <form id="discover-form" autocomplete="off">
+        <label for="search-terms"><h3>Discover TV Shows & Movies</h3></label><br>
+        <input type="text" id="search-terms" name="search-terms">
+        <input type="submit" value="Search"><br>
+      </form>
+      <br><br>
+
+      <!--- This is the buttons to change the views dynamically --->
+      <div class="buttons">
+        <button class="grid">Grid View</button>
+        <button class="list">List View</button>
+      </div>
+
+      <div id="container">
+        <ul id="discover-result" class="list"></ul>
+      </div>
+
+    </div>
+
+    <!--- This is the second square bubble --->
+    <div class="blurb2">
+
+      <div class="buttons">
+        <button class="grid">Grid View</button>
+        <button class="list">List View</button>
+      </div>
+
+      <h3 class="center-font">Popular Movies & TV Shows</h3><br><br>
+      <h2><b>Movies</b></h2>
+
+      <div id="container">
+        <ul id="movie-popular-list" class="list"></ul>
+      </div>
+
+      <h2><b>TV Shows</b></h2>
+      <div id="container">
+        <ul id="tv-popular-list" class="list"></ul>
+      </div>
+
+    </div>
+
+  <!--- This is our names at the bottom --->
+  <footer class="foot">
+    <h3> Project By: James Telcide</h3><br><br>
+  </footer>
+
+  <script>
+    //Javascript stuff goes here
+
+    //These are the api keys that I got from the the movieDB
+      const keys = {
+
+      //API Key (v3 auth)
+      apiKey: 'ca169cea29b9d08863d7b6bae3170c99',
+      //Example API Request
+      exampleReq: 'https://api.themoviedb.org/3/movie/550?api_key=ca169cea29b9d08863d7b6bae3170c99',
+      //API Read Access Token (v4 auth)
+      accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTE2OWNlYTI5YjlkMDg4NjNkN2I2YmFlMzE3MGM5OSIsInN1YiI6IjYxOWJmODZmNzE0NThmMDA4YWY2NDYxYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tfW5y5WC5yaifXeSx_8QAgVCBWqqdMWIVB16Nq15HFk',
+
+      };
+
+
+    //This holds all the javascript stuff
+    $(document).ready(function(){
+
+      //This grabs the information put into the search bar form
+      $("#discover-form").submit(function(){
+
+        $("#discover-result").empty();
+
+        /* this is my attempt at making different pages however it doesnt work at the moment
+        var pageChoice = 39;
+        
+        if ($("#page1").prop("checked")) {
+          pageChoice = 0;
+        } else if($("#page2").prop("checked")) {
+          pageChoice = 9;
+        } else if($("#page3").prop("checked")) {
+          pageChoice = 19;
+        } else if($("#page4").prop("checked")) {
+          pageChoice = 29;
+        } else if($("#page5").prop("checked")) {
+          pageChoice = 39;
+        }
+
+        */
+
+        //This is the value that was typed into the search bar
+        var search = $("#search-terms").val();
+
+        //This if else statement makes it so that the search can't be left blank
+        if(search == '') {
+          alert("ERROR: Please enter text in field.");
+        }
+        else {
+
+          //values for function
+          var title = '';
+          var author = '';
+          var image = '';
+          var url = '';
+
+          //this function displays searched results in the first box
+          $.get("https://api.themoviedb.org/3/" + 'search/movie?api_key=' + keys.apiKey + '&query=' + search, function(response){
+            for(i = 0; i < response.results.length; i++){
+              title = $('<h3><b>Title: </b>' + response.results[i].title + '</a></h3>');
+              author = $('<h3> <b>Overview: </b>' + response.results[i].overview + '</h3>');
+              img = $('<img><br><br><br>');
+              url = 'https://image.tmdb.org/t/p/w342' + response.results[i].poster_path;
+              img.attr('src',url);
+              
+              title.appendTo("#discover-result");
+              author.appendTo("#discover-result");
+              img.appendTo("#discover-result");
+            }
+          });
+        }
+        return false;
+      });
+
+        //values for next function
+          var title = '';
+          var author = '';
+          var image = '';
+          var url = '';
+
+          //this function displays the top 5 popular movie results in the second box
+          $.get("https://api.themoviedb.org/3/" + 'movie/popular?api_key=' + keys.apiKey + '&language=en-US&page=maximum=3', function(response){
+            for(i = 0; i < 5; i++){
+              title = $('<h3><b>Title: </b>' + response.results[i].title + '</a></h3>');
+              author = $('<h3> <b>Overview: </b>' + response.results[i].overview + '</h3>');
+              img = $('<img><br><br><br>');
+              url = 'https://image.tmdb.org/t/p/w342' + response.results[i].poster_path;
+              img.attr('src',url);
+              
+              title.appendTo("#movie-popular-list");
+              author.appendTo("#movie-popular-list");
+              img.appendTo("#movie-popular-list");
+            }
+          });
+
+          //values for next function
+          var title = '';
+          var author = '';
+          var image = '';
+          var url = '';
+
+          //this function displays the top 5 popular tv results in the second box
+          $.get("https://api.themoviedb.org/3/" + 'tv/popular?api_key=' + keys.apiKey + '&language=en-US&page=1', function(response){
+            for(i = 0; i < 5; i++){
+              title = $('<h3><b>Title: </b>' + response.results[i].name + '</a></h3>');
+              author = $('<h3> <b>Overview: </b>' + response.results[i].overview + '</h3>');
+              img = $('<img><br><br><br>');
+              url = 'https://image.tmdb.org/t/p/w342' + response.results[i].poster_path;
+              img.attr('src',url);
+              
+              title.appendTo("#tv-popular-list");
+              author.appendTo("#tv-popular-list");
+              img.appendTo("#tv-popular-list");
+            }
+          });
+    });
+
+  </script>
+</body>
+</html>

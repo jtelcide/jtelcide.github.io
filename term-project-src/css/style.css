@@ -1,0 +1,59 @@
+
+/*  This changes the color of the background*/
+.bg-color{
+  background-color: #4c5255;
+}
+
+/*  This the formatting for the title and description of project */
+.bg-content {
+  padding-top: 20px;
+  color: white;
+  text-align: center;
+}
+
+/*  This is the formating for the div that holds the white squares */
+.blurb-content2{
+  padding-top: 30px;
+  margin-left: 40px;
+}
+
+/*  This is the formating for the white squares */
+.blurb2 {
+  background-color: white;
+  margin: auto;
+  margin-top: 5%;
+  padding: 20px 20px 20px 20px;
+  width: 70%;
+  height: auto;
+  border-radius: 25px;
+}
+
+/*  I just used this to center font that seemed out of place */
+.center-font{
+  text-align: center;
+}
+
+/*  This is just some special effects for buttons */
+button{
+  cursor: pointer;
+}
+
+/*  This is for the footer at the bottom with our names */
+.foot {
+  color: white;
+  padding-top: 10%;
+  text-align: center;
+}
+
+/* This is what i used to try and make the grid view / list view work but currently its kinda broken so this probably wont stay here long  */
+.back-to{
+  text-align: left;
+  margin-left: 20px;
+}
+
+#container  ul { list-style: none; }
+#container  .buttons { margin-bottom: 20px; }
+
+#container  .list li { width: 100%; border-bottom: 1px dotted #CCC; margin-bottom: 10px; padding-bottom: 10px; }
+
+#container .grid li { float: left; width: 25%; border-right: 1px dotted #CCC; border-bottom: 1px dotted #CCC; padding: 20px; }
